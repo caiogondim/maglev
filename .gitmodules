@@ -1,0 +1,3 @@
+[submodule "pain-control"]
+	path = pain-control
+	url = git@github.com:tmux-plugins/tmux-pain-control.git
