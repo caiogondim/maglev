@@ -2,7 +2,7 @@
 
 # Maglev
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam illum esse id placeat consectetur, expedita eum illo? Magnam eum fuga, veritatis numquam, rem ratione quia. Soluta eius aliquid vitae, optio.
+A Tmux theme made to work together with [Bullet train](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme).
 
 ## Screenshot
 
@@ -21,6 +21,8 @@ git clone git@github.com:caiogondim/maglev.git
 cd maglev
 make install
 ```
+
+This Tmux theme was made to work with [Bullet train](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme) ZSH theme.
 
 Some dependencies:
 - [Tmux](http://tmux.github.io/)
