@@ -13,3 +13,6 @@
 [submodule "plugins/battery"]
 	path = plugins/battery
 	url = git@github.com:tmux-plugins/tmux-battery.git
+[submodule "plugins/cpu"]
+	path = plugins/cpu
+	url = git@github.com:tmux-plugins/tmux-cpu.git
