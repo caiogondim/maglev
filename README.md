@@ -68,3 +68,7 @@ For customisation, use the `~/.tmux.conf.local` file.
 
 ## Credits
 - Icon created by Katya Sotnikova from The Noun Project
+- [Tmux open](https://github.com/tmux-plugins/tmux-open)
+- [Tmux battery status](https://github.com/tmux-plugins/tmux-battery)
+- [Tmux open](https://github.com/tmux-plugins/tmux-open)
+- [Tmux pain control](https://github.com/tmux-plugins/tmux-pain-control)
