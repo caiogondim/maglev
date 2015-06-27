@@ -10,3 +10,6 @@
 [submodule "plugins/open"]
 	path = plugins/open
 	url = git@github.com:tmux-plugins/tmux-open.git
+[submodule "plugins/battery"]
+	path = plugins/battery
+	url = git@github.com:tmux-plugins/tmux-battery.git
