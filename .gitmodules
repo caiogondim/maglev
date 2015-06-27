@@ -1,3 +1,9 @@
 [submodule "pain-control"]
 	path = pain-control
 	url = git@github.com:tmux-plugins/tmux-pain-control.git
+[submodule "plugins/copycat"]
+	path = plugins/copycat
+	url = git@github.com:tmux-plugins/tmux-copycat.git
+[submodule "plugins/yank"]
+	path = plugins/yank
+	url = git@github.com:tmux-plugins/tmux-yank.git
