@@ -1,4 +1,6 @@
 install:
+	git submodule init
+	git submodule update
 	@if [ -f ~/.tmux.conf ]; \
 	then \
 		echo 'mv ~/.tmux.conf ~/.tmux.conf.bak'; \
