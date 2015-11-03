@@ -1,3 +1,4 @@
+opsys := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 install:
 	git submodule init
 	git submodule update
@@ -7,7 +8,12 @@ install:
 		mv ~/.tmux.conf ~/.tmux.conf.bak; \
 	fi;
 	cp `pwd`/.tmux.conf ~/.tmux.conf
-	sed -i '' 's|{{pwd}}|'`pwd`'|g' ~/.tmux.conf
+	@if [ "$(opsys)" = "Linux" ]; \
+	then \
+		sed -i 's|{{pwd}}|'`pwd`'|g' ~/.tmux.conf; \
+	@else \
+		sed -i '' 's|{{pwd}}|'`pwd`'|g' ~/.tmux.conf; \
+	fi \
 
 uninstall:
 	@if [ -f ~/.tmux.conf.bak ]; \
