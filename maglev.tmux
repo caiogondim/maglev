@@ -4,12 +4,6 @@ set -e
 # fetching the directory where plugins are installed
 PLUGIN_PATH="$(tmux show-env -g TMUX_PLUGIN_MANAGER_PATH | cut -f2 -d=)"
 
-# tmux theme, colors and status line
-# available themes:
-#   - powerline (a powerline inspired theme)
-#   - powerline_patched_font (a powerline inspired theme using a patched font)
-tmux_conf_theme=powerline_patched_font
-
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
 tmux set -g @batt_charging_icon "︎♡"
@@ -20,24 +14,11 @@ tmux set -g @batt_attached_icon "︎♡"
 tmux run-shell $PLUGIN_PATH/maglev/plugins/fix-left-segment.tmux
 
 apply_theme() {
-case "$1" in
-    powerline_patched_font)
     left_separator=''
     left_separator_black=''
     right_separator=''
     right_separator_black=''
     session_symbol=''
-    ;;
-    powerline)
-    left_separator='|'
-    left_separator_black=' '
-    right_separator='|'
-    right_separator_black=' '
-    ;;
-esac
-
-case "$1" in
-    powerline*)
 
     # panes
     pane_border_fg=colour8 # gray
@@ -120,8 +101,6 @@ case "$1" in
     # clock
     clock_mode_colour=colour4 # blue
     tmux setw -g clock-mode-colour $clock_mode_colour
-    ;;
-esac
 }
 
 circled_digit() {
