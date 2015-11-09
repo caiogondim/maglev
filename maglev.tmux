@@ -137,23 +137,6 @@ maximize_pane() {
     fi
 }
 
-toggle_mouse() {
-old=$(tmux show -g -w | grep mode-mouse | cut -d' ' -f2)
-new=""
-
-if [ "$old" = "on" ] ; then
-    new="off"
-else
-    new="on"
-fi
-
-tmux set -g mode-mouse $new \;\
-    set -g mouse-resize-pane $new \;\
-    set -g mouse-select-pane $new \;\
-    set -g mouse-select-window $new \;\
-    display "mouse: $new"
-}
-
 battery() {
     battery_symbol=$1
     battery_symbol_count=$2
