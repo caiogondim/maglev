@@ -260,27 +260,4 @@ elif echo $battery_palette | grep -q -E '^heat(,colour[0-9]{1,3})?$'; then
     fi
 fi
 }
-
-apply_configurable_bindings() {
-windows_retain_current_path=${1:-false}
-if [ x"$windows_retain_current_path" = x"true" -o x"$windows_retain_current_path" = x"1" ] ; then
-    tmux bind c new-window -c '#{pane_current_path}'
-else
-    tmux bind c new-window
-fi
-
-panes_retain_current_path=${2:-true}
-if [ x"$panes_retain_current_path" = x"true" -o x"$panes_retain_current_path" = x"1" ] ; then
-    tmux  bind '"' split-window -h -c "#{pane_current_path}"  \;\
-        bind _ split-window -h -c "#{pane_current_path}"    \;\
-        bind % split-window -v -c "#{pane_current_path}"    \;\
-        bind - split-window -v -c "#{pane_current_path}"
-else
-    tmux  bind '"' split-window -h  \;\
-        bind _ split-window -h    \;\
-        bind % split-window -v    \;\
-        bind - split-window -v
-fi
-}
-
 $@
