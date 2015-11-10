@@ -35,4 +35,8 @@ Some dependencies:
 - [Powerline patched font](https://github.com/powerline/fonts)
 
 ## Credits
-- [Original Maglev Theme](https://github.com/caiogondim/maglev)
+- Icon created by Katya Sotnikova from The Noun Project
+- [Tmux open](https://github.com/tmux-plugins/tmux-open)
+- [Tmux battery status](https://github.com/tmux-plugins/tmux-battery)
+- [Tmux open](https://github.com/tmux-plugins/tmux-open)
+- [Tmux pain control](https://github.com/tmux-plugins/tmux-pain-control)
