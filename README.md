@@ -29,19 +29,22 @@ You will have to declare the plugins and the theme on your `.tmux.conf`:
 
 ```bash
 # List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-pain-control'
-set -g @plugin 'tmux-plugins/tmux-copycat'
-set -g @plugin 'tmux-plugins/tmux-open'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-battery'
-set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @tpm_plugins '                \
+    tmux-plugins/tpm                 \
+    tmux-plugins/tmux-sensible       \
+    tmux-plugins/tmux-resurrect      \
+    tmux-plugins/tmux-continuum      \
+    tmux-plugins/tmux-yank           \
+    tmux-plugins/tmux-pain-control   \
+    tmux-plugins/tmux-copycat        \
+    tmux-plugins/tmux-open           \
+    tmux-plugins/tmux-battery        \
+    tmux-plugins/tmux-cpu            \
+    caiogondim/maglev                \
+'
 
 # Initialize TMUX plugin manager
 run '~/.tmux/plugins/tpm/tpm'
-
-# Theme
-run ~/path/to/maglev.tmux
 ```
 
 This Tmux theme was made to work with [Bullet train](https://github.com/caiogondim/bullet-train-oh-my-zsh-theme) ZSH theme.
