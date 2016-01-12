@@ -28,6 +28,17 @@ See [installing TPM plugins](https://github.com/tmux-plugins/tpm#installing-plug
 You will have to declare the plugins and the theme on your `.tmux.conf`:
 
 ```bash
+# Start windows and panes at 1, not 0
+set -g base-index 1
+set -g pane-base-index 1
+
+set-option -g status-position top
+
+set-option -g repeat-time 0
+
+# Removes ESC delay
+set -sg escape-time 0
+
 # List of plugins
 set -g @tpm_plugins '                \
     tmux-plugins/tpm                 \
