@@ -41,6 +41,7 @@ set -sg escape-time 0
 
 # List of plugins
 set -g @tpm_plugins '                \
+    caiogondim/maglev                \
     tmux-plugins/tpm                 \
     tmux-plugins/tmux-sensible       \
     tmux-plugins/tmux-resurrect      \
@@ -51,7 +52,6 @@ set -g @tpm_plugins '                \
     tmux-plugins/tmux-open           \
     tmux-plugins/tmux-battery        \
     tmux-plugins/tmux-cpu            \
-    caiogondim/maglev                \
 '
 
 # Initialize TMUX plugin manager
