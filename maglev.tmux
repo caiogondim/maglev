@@ -85,11 +85,11 @@ apply_theme() {
 
     # status line
     status_fg=colour253 # white
-    status_bg=colour0 # dark gray
+    status_bg=colour238 # medium gray
     tmux set -g status-style fg=$status_fg,bg=$status_bg
 
     session_fg=colour16  # black
-    session_bg=colour11 # yellow
+    session_bg=colour220 # pale orange
     status_left="#[fg=$session_fg,bg=$session_bg,bold] ❐ #S #[fg=$session_bg,bg=$status_bg,nobold]$left_separator_black"
     if [ x"`tmux -q -L tmux_theme_status_left_test -f /dev/null new-session -d \; show -g -v status-left \; kill-session`" = x"[#S] " ] ; then
         status_left="$status_left "
@@ -102,7 +102,7 @@ apply_theme() {
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
     window_status_current_fg=colour16 # black
-    window_status_current_bg=colour4 # blue
+    window_status_current_bg=colour74 # light blue
     window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
@@ -124,12 +124,12 @@ apply_theme() {
     battery_full_fg=colour160   # red
     battery_empty_fg=colour254  # white
     battery_bg=colour160        # black
-    time_date_fg=colour8      # gray
+    time_date_fg=colour249      # light gray
     time_date_bg=colour0 # dark gray
     whoami_fg=colour254         # white
     whoami_bg=colour160         # red
     host_fg=colour16            # black
-    host_bg=colour254           # white
+    host_bg=colour249           # light white
     status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
     tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
