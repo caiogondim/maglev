@@ -14,6 +14,8 @@ tmux set -g @batt_attached_icon "︎♡"
 # window name. This script adds the blank space back to the `status-left`.
 # Issue #2: https://github.com/caiogondim/maglev/issues/2
 
+# Colour codes: http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
+
 get_tmux_option() {
     local option
     local default_value
