@@ -98,18 +98,15 @@ apply_theme() {
     fi
     tmux set -g status-left-length 32 \; set -g status-left "$status_left"
 
-    window_status_fg=colour8 # gray
-    window_status_bg=colour0 # dark gray
+    window_status_fg=colour249 # light gray
+    window_status_bg=colour238 # medium gray
     window_status_format="#I #W"
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
     window_status_current_fg=colour16 # black
     window_status_current_bg=colour74 # light blue
 
-    window_status_detail_fg=colour16 # black
-    window_status_detail_bg=colour180 # light brown
-
-    window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$window_status_detail_bg]$left_separator_black#[fg=$window_status_detail_fg,bg=$window_status_detail_bg,bold] #(whoami) $left_separator #(hostname -s) $left_separator #(curl ipecho.net/plain;echo) #[fg=$window_status_detail_bg,bg=$status_bg,nobold]$left_separator_black"
+    window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
 
@@ -123,7 +120,7 @@ apply_theme() {
     window_status_bell_attr=blink,bold
     tmux setw -g window-status-bell-style fg=$window_status_bell_fg,bg=$window_status_bell_bg,$window_status_bell_attr
 
-    window_status_last_fg=colour4 # blue
+    window_status_last_fg=colour39 # light blue
     window_status_last_attr=default
     tmux setw -g window-status-last-style $window_status_last_attr,fg=$window_status_last_fg
 
@@ -136,8 +133,8 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour190          # light yellow-ish green
-    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
-    tmux set -g status-right-length 64 \; set -g status-right "$status_right"
+    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b $right_separator #(curl ipecho.net/plain;echo) #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    tmux set -g status-right-length 80 \; set -g status-right "$status_right"
 
     # clock
     clock_mode_colour=colour4 # blue
