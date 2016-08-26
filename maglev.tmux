@@ -100,7 +100,7 @@ apply_theme() {
 
     window_status_fg=colour249 # light gray
     window_status_bg=colour238 # medium gray
-    window_status_format="#I #W"
+    window_status_format=" #I #W $left_separator"
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
     window_status_current_fg=colour16 # black
@@ -120,7 +120,7 @@ apply_theme() {
     window_status_bell_attr=blink,bold
     tmux setw -g window-status-bell-style fg=$window_status_bell_fg,bg=$window_status_bell_bg,$window_status_bell_attr
 
-    window_status_last_fg=colour39 # light blue
+    window_status_last_fg=colour220 # pale orange
     window_status_last_attr=default
     tmux setw -g window-status-last-style $window_status_last_attr,fg=$window_status_last_fg
 
