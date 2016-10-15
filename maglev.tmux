@@ -7,7 +7,6 @@ tmux set -g @batt_charging_icon "︎♡"
 tmux set -g @batt_discharging_icon "︎♡"
 tmux set -g @batt_attached_icon "︎♡"
 
-
 # BEGIN Fix CPU segment --------------------------------------------------------
 
 # The plugin “cpu” is removing a blank space between the session name and first
@@ -130,7 +129,7 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(cat ~/.cache/my-ip)  "
     tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
