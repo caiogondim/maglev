@@ -133,7 +133,9 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour190          # light yellow-ish green
-    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b $right_separator #(curl ipecho.net/plain;echo) #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    #myip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com)
+    myip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b $right_separator #$myip #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
     tmux set -g status-right-length 80 \; set -g status-right "$status_right"
 
     # clock
