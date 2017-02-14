@@ -7,6 +7,9 @@ tmux set -g @batt_charging_icon "︎♡"
 tmux set -g @batt_discharging_icon "︎♡"
 tmux set -g @batt_attached_icon "︎♡"
 
+# Optional prefix highlight plugin
+tmux set -g @prefix_highlight_show_copy_mode 'on'
+tmux set -g @prefix_highlight_copy_mode_attr 'fg=black,bg=yellow,bold' # default is 'fg=default,bg=yellow'
 
 # BEGIN Fix CPU segment --------------------------------------------------------
 
@@ -130,7 +133,7 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
     tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
