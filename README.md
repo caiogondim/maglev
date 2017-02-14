@@ -20,12 +20,12 @@ This plugin depends on the following tmux plugins:
 - [Tmux copycat](https://github.com/tmux-plugins/tmux-copycat)
 - [Tmux Yank](https://github.com/tmux-plugins/tmux-yank)
 - [Tmux Open](https://github.com/tmux-plugins/tmux-open)
-- [Tmux Battery](https://github.com/tmux-plugins/tmux-battery)
-- [Tmux CPU](https://github.com/tmux-plugins/tmux-cpu)
 
 This plugin has the following optional dependencies:
 
 - [Tmux prefix highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)
+- [Tmux Battery](https://github.com/tmux-plugins/tmux-battery)
+- [Tmux CPU](https://github.com/tmux-plugins/tmux-cpu)
 
 See [installing TPM plugins](https://github.com/tmux-plugins/tpm#installing-plugins).
 
