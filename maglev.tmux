@@ -138,10 +138,6 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(curl icanhazip.com)  "
-    #deoplete#mapping#_rpcrequest_wrapper([])
-    #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
-    #tmux set -g status-right-length 75 \; set -g status-right "$status_right"
     status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
 
     # Only show solid separator if CPU or Battery are to be displayed
