@@ -58,9 +58,9 @@ apply_theme() {
     pane_border_fg=colour8 # gray
     pane_active_border_fg=colour4 # blue
 
-    tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
+    #tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
     #uncomment for fat borders
-    #tmux set -ga pane-border-style bg=$pane_border_fg \; set -ga pane-active-border-style bg=$pane_active_border_fg
+    tmux set -ga pane-border-style bg=$pane_border_fg \; set -ga pane-active-border-style bg=$pane_active_border_fg
 
     display_panes_active_colour=colour4 # blue
     display_panes_colour=colour4 # blue
@@ -129,8 +129,9 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    status_right="︎#[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(cat ~/.cache/my-ip)  "
-    tmux set -g status-right-length 64 \; set -g status-right "$status_right"
+    #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(curl icanhazip.com)  "
+    status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    tmux set -g status-right-length 75 \; set -g status-right "$status_right"
 
     # clock
     clock_mode_colour=colour4 # blue
