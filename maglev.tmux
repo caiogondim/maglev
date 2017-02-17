@@ -170,8 +170,8 @@ apply_theme() {
     tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
-    #clock_mode_colour=colour4 # blue
-    #tmux setw -g clock-mode-colour $clock_mode_colour
+    clock_mode_colour=colour4 # blue
+    tmux setw -g clock-mode-colour $clock_mode_colour
 }
 
 circled_digit() {
