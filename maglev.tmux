@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 set -e
 
+#PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
+
+# Determine whether the tmux-cpu plugin should be installed
+SHOW_CPU=true
+SHOW_BATTERY=true
+
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
 tmux set -g @batt_charging_icon "︎♡"
 tmux set -g @batt_discharging_icon "︎♡"
 tmux set -g @batt_attached_icon "︎♡"
+
+# Optional prefix highlight plugin
+tmux set -g @prefix_highlight_show_copy_mode 'on'
+tmux set -g @prefix_highlight_copy_mode_attr 'fg=black,bg=yellow,bold' # default is 'fg=default,bg=yellow'
 
 # BEGIN Fix CPU segment --------------------------------------------------------
 
@@ -45,7 +55,6 @@ main() {
 main
 
 # END Fix CPU segment ----------------------------------------------------------
-
 
 apply_theme() {
     left_separator=''
@@ -129,9 +138,27 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(curl icanhazip.com)  "
-    status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
-    tmux set -g status-right-length 75 \; set -g status-right "$status_right"
+    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
+
+    # Only show solid separator if CPU or Battery are to be displayed
+    if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
+        status_right="$status_right $right_separator_black#[fg=$host_fg,bg=$host_bg,bold]"
+    fi
+
+    if [ "$SHOW_BATTERY" = true ]; then
+        status_right="$status_right #{battery_icon} #{battery_percentage}"
+    fi
+
+    # Only add intermediate separator if both CPU and Batter are to be displayed
+    if [ "$SHOW_BATTERY" = true ] && [ "$SHOW_CPU" = true ]; then
+        status_right="$status_right $right_separator"
+    fi
+
+    if [ "$SHOW_CPU" = true ]; then
+        status_right="$status_right CPU #{cpu_percentage} "
+    fi
+
+    tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
     clock_mode_colour=colour4 # blue
