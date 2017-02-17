@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
+#PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
 # Determine whether the tmux-cpu plugin should be installed
-SHOW_CPU=false
-if [[ $PLUGINS == *"tmux-cpu"* ]]; then
-    SHOW_CPU=true
-fi
-SHOW_BATTERY=false
-if [[ $PLUGINS == *"tmux-battery"* ]]; then
-    SHOW_BATTERY=true
-fi
+SHOW_CPU=true
+SHOW_BATTERY=true
 
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
@@ -145,9 +139,10 @@ apply_theme() {
     host_fg=colour16            # black
     host_bg=colour254           # white
     #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} $right_separator IP #(curl icanhazip.com)  "
-    status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
-    tmux set -g status-right-length 75 \; set -g status-right "$status_right"
-    #status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
+    #deoplete#mapping#_rpcrequest_wrapper([])
+    #status_right="︎#{prefix_highlight} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %a %d %b #[fg=$host_bg]$right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #{battery_icon} #{battery_percentage} $right_separator CPU #{cpu_percentage} "
+    #tmux set -g status-right-length 75 \; set -g status-right "$status_right"
+    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
 
     # Only show solid separator if CPU or Battery are to be displayed
     if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
