@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 set -e
 
-PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
+#PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
 # Determine whether the tmux-cpu plugin should be installed
-SHOW_CPU=false
-if [[ $PLUGINS == *"tmux-cpu"* ]]; then
-    SHOW_CPU=true
-fi
-SHOW_BATTERY=false
-if [[ $PLUGINS == *"tmux-battery"* ]]; then
-    SHOW_BATTERY=true
-fi
+SHOW_CPU=true
+SHOW_BATTERY=true
 
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
 tmux set -g @batt_charging_icon "︎♡"
 tmux set -g @batt_discharging_icon "︎♡"
 tmux set -g @batt_attached_icon "︎♡"
+tmux set -g @batt_full_charge_icon "♡"
+tmux set -g @batt_high_charge_icon "♡"
+tmux set -g @batt_medium_charge_icon "♡"
+tmux set -g @batt_low_charge_icon "♡"
+
 
 # Optional prefix highlight plugin
 tmux set -g @prefix_highlight_show_copy_mode 'on'
@@ -70,7 +69,7 @@ apply_theme() {
     session_symbol=''
 
     # panes
-    pane_border_fg=colour8 # gray
+    pane_border_fg=colour253 # gray
     pane_active_border_fg=colour4 # blue
 
     tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
