@@ -12,6 +12,11 @@ tmux set -g @batt_charged_icon "︎♡"
 tmux set -g @batt_charging_icon "︎♡"
 tmux set -g @batt_discharging_icon "︎♡"
 tmux set -g @batt_attached_icon "︎♡"
+tmux set -g @batt_full_charge_icon "♡"
+tmux set -g @batt_high_charge_icon "♡"
+tmux set -g @batt_medium_charge_icon "♡"
+tmux set -g @batt_low_charge_icon "♡"
+
 
 # Optional prefix highlight plugin
 tmux set -g @prefix_highlight_show_copy_mode 'on'
@@ -22,8 +27,6 @@ tmux set -g @prefix_highlight_copy_mode_attr 'fg=black,bg=yellow,bold' # default
 # The plugin “cpu” is removing a blank space between the session name and first
 # window name. This script adds the blank space back to the `status-left`.
 # Issue #2: https://github.com/caiogondim/maglev/issues/2
-
-# Colour codes: http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 
 get_tmux_option() {
     local option
@@ -66,12 +69,12 @@ apply_theme() {
     session_symbol=''
 
     # panes
-    pane_border_fg=colour8 # gray
+    pane_border_fg=colour253 # gray
     pane_active_border_fg=colour4 # blue
 
-    #tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
+    tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
     #uncomment for fat borders
-    tmux set -ga pane-border-style bg=$pane_border_fg \; set -ga pane-active-border-style bg=$pane_active_border_fg
+    #tmux set -ga pane-border-style bg=$pane_border_fg \; set -ga pane-active-border-style bg=$pane_active_border_fg
 
     display_panes_active_colour=colour4 # blue
     display_panes_colour=colour4 # blue
@@ -95,25 +98,24 @@ apply_theme() {
 
     # status line
     status_fg=colour253 # white
-    status_bg=colour238 # medium gray
+    status_bg=colour0 # dark gray
     tmux set -g status-style fg=$status_fg,bg=$status_bg
 
     session_fg=colour16  # black
-    session_bg=colour220 # pale orange
+    session_bg=colour11 # yellow
     status_left="#[fg=$session_fg,bg=$session_bg,bold] ❐ #S #[fg=$session_bg,bg=$status_bg,nobold]$left_separator_black"
     if [ x"`tmux -q -L tmux_theme_status_left_test -f /dev/null new-session -d \; show -g -v status-left \; kill-session`" = x"[#S] " ] ; then
         status_left="$status_left "
     fi
     tmux set -g status-left-length 32 \; set -g status-left "$status_left"
 
-    window_status_fg=colour249 # light gray
-    window_status_bg=colour238 # medium gray
-    window_status_format=" #I #W $left_separator"
+    window_status_fg=colour8 # gray
+    window_status_bg=colour0 # dark gray
+    window_status_format="#I #W"
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
     window_status_current_fg=colour16 # black
-    window_status_current_bg=colour74 # light blue
-
+    window_status_current_bg=colour4 # blue
     window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
@@ -128,21 +130,20 @@ apply_theme() {
     window_status_bell_attr=blink,bold
     tmux setw -g window-status-bell-style fg=$window_status_bell_fg,bg=$window_status_bell_bg,$window_status_bell_attr
 
-    window_status_last_fg=colour220 # pale orange
+    window_status_last_fg=colour4 # blue
     window_status_last_attr=default
     tmux setw -g window-status-last-style $window_status_last_attr,fg=$window_status_last_fg
 
     battery_full_fg=colour160   # red
     battery_empty_fg=colour254  # white
     battery_bg=colour160        # black
-    time_date_fg=colour249      # light gray
-    time_date_bg=colour0        # dark gray
+    time_date_fg=colour8      # gray
+    time_date_bg=colour0 # dark gray
     whoami_fg=colour254         # white
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    myip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b $right_separator $myip #[fg=$host_bg]"
+    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
 
     # Only show solid separator if CPU or Battery are to be displayed
     if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
@@ -162,7 +163,7 @@ apply_theme() {
         status_right="$status_right CPU #{cpu_percentage} "
     fi
 
-    tmux set -g status-right-length 80 \; set -g status-right "$status_right"
+    tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
     # clock
     clock_mode_colour=colour4 # blue
