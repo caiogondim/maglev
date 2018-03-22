@@ -12,6 +12,10 @@ SHOW_BATTERY=false
 if [[ $PLUGINS == *"tmux-battery"* ]]; then
     SHOW_BATTERY=true
 fi
+SHOW_NET=false
+if [[ $PLUGINS == *"tmux-net-speed"* ]]; then
+    SHOW_NET=true
+fi
 
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
@@ -147,7 +151,7 @@ apply_theme() {
     status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
 
     # Only show solid separator if CPU or Battery are to be displayed
-    if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
+    if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_NET" = true ] || [ "$SHOW_CPU" = true ]; then
         status_right="$status_right $right_separator_black#[fg=$host_fg,bg=$host_bg,bold]"
     fi
 
@@ -155,8 +159,17 @@ apply_theme() {
         status_right="$status_right #{battery_icon} #{battery_percentage}"
     fi
 
-    # Only add intermediate separator if both CPU and Batter are to be displayed
-    if [ "$SHOW_BATTERY" = true ] && [ "$SHOW_CPU" = true ]; then
+    # Only add intermediate separator if both battery and network are to be displayed
+    if [ "$SHOW_BATTERY" = true ] && [ "$SHOW_NET" = true ]; then
+        status_right="$status_right $right_separator"
+    fi
+
+    if [ "$SHOW_NET" = true ]; then
+        status_right="$status_right  #{net_speed} "
+    fi
+
+    # Only add intermediate separator if both  and CPU are to be displayed
+    if ([ "$SHOW_BATTERY" = true ] || [ "$SHOW_NET" = true ]) && [ "$SHOW_CPU" = true ]; then
         status_right="$status_right $right_separator"
     fi
 
@@ -164,7 +177,7 @@ apply_theme() {
         status_right="$status_right CPU #{cpu_percentage} "
     fi
 
-    tmux set -g status-right-length 64 \; set -g status-right "$status_right"
+    tmux set -g status-right-length 80 \; set -g status-right "$status_right"
 
     # clock
     clock_mode_colour=colour4 # blue
