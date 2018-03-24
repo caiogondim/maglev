@@ -11,7 +11,9 @@ fi
 SHOW_BATTERY=false
 if [[ $PLUGINS == *"tmux-battery"* ]]; then
     # if no battery can be found but the plugin is still enabled, this might result in some blank space in status-right
-    SHOW_BATTERY=true
+    if [ ! x"$(uname -s)" = x"Linux" ] || [[ "$(ls /sys/class/power_supply)" == *"BAT"* ]]; then
+        SHOW_BATTERY=true
+    fi
 fi
 SHOW_NET=false
 # net-speed plugin only works on linux as of yet (2018-03-24)
