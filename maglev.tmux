@@ -3,17 +3,19 @@ set -e
 
 PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
-# Determine whether the tmux-cpu plugin should be installed
+# Determine what plugins we can use
 SHOW_CPU=false
 if [[ $PLUGINS == *"tmux-cpu"* ]]; then
     SHOW_CPU=true
 fi
 SHOW_BATTERY=false
 if [[ $PLUGINS == *"tmux-battery"* ]]; then
+    # if no battery can be found but the plugin is still enabled, this might result in some blank space in status-right
     SHOW_BATTERY=true
 fi
 SHOW_NET=false
-if [[ $PLUGINS == *"tmux-net-speed"* ]]; then
+# net-speed plugin only works on linux as of yet (2018-03-24)
+if [[ $PLUGINS == *"tmux-net-speed"* ]] && [ x"$(uname -s)" = x"Linux" ]; then
     SHOW_NET=true
 fi
 
