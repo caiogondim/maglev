@@ -26,6 +26,7 @@ This plugin has the following optional dependencies:
 - [Tmux prefix highlight](https://github.com/tmux-plugins/tmux-prefix-highlight)
 - [Tmux Battery](https://github.com/tmux-plugins/tmux-battery)
 - [Tmux CPU](https://github.com/tmux-plugins/tmux-cpu)
+- [Tmux Net speed](https://github.com/tmux-plugins/tmux-net-speed)
 
 See [installing TPM plugins](https://github.com/tmux-plugins/tpm#installing-plugins).
 
@@ -57,6 +58,7 @@ set -g @tpm_plugins '                     \
     tmux-plugins/tmux-battery             \
     tmux-plugins/tmux-cpu                 \
     tmux-plugins/tmux-prefix-highlight    \
+    tmux-plugins/tmux-net-speed           \
 '
 
 # Initialize TMUX plugin manager
